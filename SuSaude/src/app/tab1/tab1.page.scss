@@ -1,0 +1,18 @@
+ion-img {
+   width: 7%;
+}
+
+#menu {
+   height: 50vh;
+   display: grid;
+   text-align: center;
+}
+
+#menu ion-img {
+   width: 35%;
+   margin: 25% auto 20px auto;
+}
+
+#menu span {
+   font-weight: bold;
+}

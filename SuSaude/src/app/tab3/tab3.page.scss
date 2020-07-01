@@ -1,0 +1,20 @@
+ion-grid ion-title {
+   text-align: center;
+   font-weight: bold;
+}
+
+#paciente #Search,
+#paciente #Edit,
+#paciente #Add,
+#paciente #Delete,
+#paciente #dado {
+   display: none;
+}
+
+#paciente #Search.none,
+#paciente #Edit.none,
+#paciente #Add.none,
+#paciente #Delete.none,
+#paciente #dado.none {
+   display: block;
+}

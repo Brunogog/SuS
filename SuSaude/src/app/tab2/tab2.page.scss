@@ -1,0 +1,20 @@
+ion-grid ion-title {
+   text-align: center;
+   font-weight: bold;
+}
+
+#hospital #Search,
+#hospital #Edit,
+#hospital #Add,
+#hospital #Delete,
+#hospital #dado {
+   display: none;
+}
+
+#hospital #Search.none,
+#hospital #Edit.none,
+#hospital #Add.none,
+#hospital #Delete.none,
+#hospital #dado.none {
+   display: block;
+}

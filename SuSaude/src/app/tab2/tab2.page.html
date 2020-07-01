@@ -1,0 +1,127 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon name="pulse"></ion-icon>
+      Hospitais
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" id="hospital">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-title>
+              <ion-icon name="search-outline"></ion-icon>
+            </ion-title>
+          </ion-card-header>
+          <ion-button expand="full" color="dark" (click)="Search()">Consultar Hospitais</ion-button>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-title>
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-title>
+          </ion-card-header>
+          <ion-button expand="full" color="dark" (click)="Add()">Adicionar Hospitais</ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row id="Add">
+      <ion-col>
+        <ion-item>
+          <ion-title>Cadastrar Hospital</ion-title>
+        </ion-item>
+        <form #cadastro="ngForm" (ngSubmit)="onSubmit(cadastro)">
+          <ion-item>
+            <ion-label position="floating">Nome <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input required type="text" name="nome" [(ngModel)]="hospital.nome"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Endereço <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input required type="text" name="endereco" [(ngModel)]="hospital.endereco"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Avaliação <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input required type="text" name="avaliacao" [(ngModel)]="hospital.avaliacao"></ion-input>
+          </ion-item>
+          <ion-button block color="primary" type="submit" expand="block">
+            Cadastrar
+          </ion-button>
+        </form>
+      </ion-col>
+    </ion-row>
+    <ion-row id="Search">
+      <ion-col>
+        <div *ngFor="let dado of arrayHospital">
+          <ion-item button (click)="details(dado.id)" detail>
+            <ion-label>{{dado.nome}}</ion-label>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row id="dado">
+      <ion-col>
+        <ion-item>
+          <ion-title>{{aux.nome}}</ion-title>
+        </ion-item>
+        <ion-item>
+          <ion-label>Endereço: </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{aux.endereco}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Avaliação: </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{aux.avaliacao}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button block color="warning" type="submit" title="edit" expand="block" (click)="Edit()">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button block color="danger" type="submit" title="delete" expand="block" (click)="Delete(aux.id)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-row>
+    <ion-row id="Edit">
+      <ion-item>
+        <ion-label>Nome: </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="{{aux.nome}}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Endereço: </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="{{aux.endereco}}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Avaliação: </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="{{aux.avaliacao}}"></ion-input>
+      </ion-item>
+      <ion-button block color="primary" expand="block" (click)="atualizarDados()">
+        Atualizar dados
+      </ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-content>

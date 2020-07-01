@@ -1,0 +1,150 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon name="people"></ion-icon>
+      Paciente
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" id="paciente">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-title>
+              <ion-icon name="search-outline"></ion-icon>
+            </ion-title>
+          </ion-card-header>
+          <ion-button expand="full" color="dark" (click)="Search()">Consultar Pacientes</ion-button>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-title>
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-title>
+          </ion-card-header>
+          <ion-button expand="full" color="dark" (click)="Add()">Adicionar Paciente</ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row id="Add">
+      <ion-col>
+        <ion-item>
+          <ion-title>Cadastrar Paciente</ion-title>
+        </ion-item>
+        <form #cadastro="ngForm" (ngSubmit)="onSubmit(cadastro)">
+          <ion-item>
+            <ion-label position="floating">Nome <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input required type="text" name="nome" [(ngModel)]="paciente.nome"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Cpf <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input required type="number" name="cpf" [(ngModel)]="paciente.cpf"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Sexo </ion-label>
+            <ion-select value="sexo" multiple="false" placeholder="Selecione o Sexo" name="sexo"
+              [(ngModel)]="paciente.sexo">
+              <ion-select-option [value]="M">Masculino</ion-select-option>
+              <ion-select-option [value]="F">Feminino</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Idade <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input required type="number" name="idade" [(ngModel)]="paciente.idade"></ion-input>
+          </ion-item>
+          <ion-button block color="primary" type="submit" expand="block">
+            Cadastrar
+          </ion-button>
+        </form>
+      </ion-col>
+    </ion-row>
+    <ion-row id="Search">
+      <ion-col>
+        <div *ngFor="let dado of arrayPaciente">
+          <ion-item button (click)="details(dado.id)" detail>
+            <ion-label>{{dado.nome}}</ion-label>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row id="dado">
+      <ion-col>
+        <ion-item>
+          <ion-title>{{aux.nome}}</ion-title>
+        </ion-item>
+        <ion-item>
+          <ion-label>Cpf: </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{aux.cpf}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Sexo: </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{aux.sexo}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Idade: </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{aux.idade}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button block color="warning" type="submit" title="edit" expand="block" (click)="Edit()">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button block color="danger" type="submit" title="delete" expand="block" (click)="Delete(aux.id)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-row>
+    <ion-row id="Edit">
+      <ion-item>
+        <ion-label>Nome: </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="{{aux.nome}}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Cpf: </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" placeholder="{{aux.cpf}}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Sexo: </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-select value="sexo" multiple="false" placeholder="{{aux.sexo}}" name="sexo">
+          <ion-select-option [value]="M">Masculino</ion-select-option>
+          <ion-select-option [value]="F">Feminino</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Idade: </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="{{aux.idade}}"></ion-input>
+      </ion-item>
+      <ion-button block color="primary" expand="block" (click)="atualizarDados()">
+        Atualizar dados
+      </ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-content>
